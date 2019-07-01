@@ -13,9 +13,6 @@ public class App {
     }
 
     public String bestCharge(List<String> inputs) {
-        if(inputs.size()<1){
-            return "";
-        }
         List<Item> itemList = itemRepository.findAll();//菜信息
         List<SalesPromotion> salesPromotionList = salesPromotionRepository.findAll();//折扣信息
         Map<String,Boolean> SaleMap = new HashMap<>();//优惠菜
@@ -42,13 +39,14 @@ public class App {
                     break;
                 }
             }
-            out.append("-----------------------------------\n"+
-                    "使用优惠:\n");
+            out.append("-----------------------------------\n");
             if((pay>=30d&&discount>6d)||(pay<30d&&discount!=0d)){
+                out.append("使用优惠:\n");
                 out.append(String.format("指定菜品半价({0})，省{1}元\n",String.join(",",discountItemList),(int)discount.doubleValue()));
                 out.append("-----------------------------------\n");
                 pay -=discount;
             }else if(pay>30&&discount<=6){
+                out.append("使用优惠:\n");
                 out.append("满30减6元，省6元");
                 out.append("-----------------------------------\n");
                 pay -=6;
