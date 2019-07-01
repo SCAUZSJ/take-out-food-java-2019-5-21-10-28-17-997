@@ -25,7 +25,7 @@ public class App {
         Double pay = 0d;//总价
         Double discount = 0d;//优惠金额
         List<String> discountItemList = new ArrayList<>();
-        out.append("============= 订餐明细 =============\\n");
+        out.append("============= 订餐明细 =============\n");
         for(String input:inputs) {
             List<String> words = Arrays.asList(input.split(" "));
             for (Item item : itemList) {
