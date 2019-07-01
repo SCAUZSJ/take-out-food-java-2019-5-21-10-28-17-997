@@ -13,8 +13,6 @@ public class App {
     }
 
     public String bestCharge(List<String> inputs) {
-        //TODO: write code here
-        //"ITEM0001 x 1", "ITEMi0013 x 2", "ITEM0022 x 1")
         if(inputs.size()<1){
             return "";
         }
@@ -24,16 +22,7 @@ public class App {
         for(String itemName : salesPromotionList.get(1).getRelatedItems()){
             SaleMap.put(itemName,true);
         }
-        String s="============= 订餐明细 =============\n" +
-                "黄焖鸡 x 1 = 18元\n" +
-                "肉夹馍 x 2 = 12元\n" +
-                "凉皮 x 1 = 8元\n" +
-                "-----------------------------------\n" +
-                "使用优惠:\n" +
-                "指定菜品半价(黄焖鸡，凉皮)，省13元\n" +
-                "-----------------------------------\n" +
-                "总计：25元\n" +
-                "===================================";
+
         StringBuffer out = new StringBuffer();//输入信息
         Double pay = 0d;//总价
         Double discount = 0d;//优惠金额
@@ -58,9 +47,11 @@ public class App {
             if((pay>=30d&&discount>6d)||(pay<30d&&discount!=0d)){
                 out.append(String.format("指定菜品半价({0})，省{1}元\n",String.join(",",discountItemList),(int)discount.doubleValue()));
                 out.append("-----------------------------------\n");
+                pay -=discount;
             }else if(pay>30&&discount<=6){
                 out.append("满30减6元，省6元");
                 out.append("-----------------------------------\n");
+                pay -=6;
             }
             out.append("总计：+"+(int)pay.doubleValue()+"元\n" +
                     "===================================");
