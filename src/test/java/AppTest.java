@@ -56,7 +56,7 @@ public class AppTest {
         App app = new App(new ItemRepositoryTestImpl(), new SalesPromotionRepositoryTestImpl());
         String receiptString = app.bestCharge(inputs);
 
-        assertThat(receiptString, is("============= 订餐明细 =============\n" +
+            assertThat(receiptString, is("============= 订餐明细 =============\n" +
                 "肉夹馍 x 4 = 24元\n" +
                 "-----------------------------------\n" +
                 "总计：24元\n" +
